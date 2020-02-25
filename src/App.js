@@ -1,24 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
+import Box from './components/Box.js'
 import './App.css';
 
 function App() {
+
+
+  function reset(){
+    window.location.reload(false);
+  }
+
+  const [number, setNumber] = React.useState(0);
+  const [boxes, setBoxes] = React.useState([]);
+
+
+
+  React.useEffect(()=>{
+    
+    if(number%2 == 0){
+      let ogBoxes = boxes;
+      ogBoxes.push('some string');
+      setBoxes(ogBoxes);
+    }
+
+  }, [number]);
+
+  let boxEles = boxes.map((bx, idx)=>
+    <Box/>
+  );
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <button onClick={()=>setNumber(number+1)}>Counter</button>
+      <button onClick={reset}>Reset</button>
+      <div>{number}</div>
+      {boxEles}
+
     </div>
   );
 }
