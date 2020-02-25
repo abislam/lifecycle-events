@@ -16,7 +16,7 @@ function App() {
 
   React.useEffect(()=>{
     
-    if(number%2 == 0){
+    if(number%2 === 0){
       let ogBoxes = boxes;
       ogBoxes.push('some string');
       setBoxes(ogBoxes);
